@@ -1,0 +1,14 @@
+Q: What are your opening hours?
+A: We are open Monday to Sunday from 10 AM to 10 PM.
+
+Q: What type of cuisine do you serve?
+A: We serve authentic Italian cuisine with a modern twist.
+
+Q: Do you take reservations?
+A: Yes, we accept reservations. Please call us at (555) 123-4567.
+
+Q: What are your popular dishes?
+A: Our signature dishes include Margherita Pizza, Seafood Risotto, and Tiramisu.
+
+Q: Do you offer delivery?
+A: Yes, we offer delivery through our app and third-party services.
