@@ -1,7 +1,11 @@
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+
 from pydantic import BaseModel
+
 from app.chatbot import build_chatbot_chain
+from app.chat_logger import log_query
+
 import uuid
 import logging
 
@@ -20,29 +24,36 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Request schema
+# Request schema(pydantic)
 class ChatRequest(BaseModel):
     session_id: str | None = None
     message: str
+
+# Global chatbot chain instance (loaded once on startup)
+chatbot_chain = None
 
 # In-memory store for chatbot chains
 chat_sessions = {}
 
 @app.on_event("startup")
 async def startup_event():
-    logger.info("🚀 FastAPI app started")
+    global chatbot_chain
+    logger.info("🚀Starting Meskott Chatbot backend...")
+    chatbot_chain = build_chatbot_chain
+    logger.info("✅ Chatbot chain is ready")
 
 @app.get("/")
 async def root():
     return {
-        "message": "🏃‍♀️ Meskott Chatbot backend is running!",
+        "message": "✅ Meskott Chatbot backend is running!",
         "docs": "/docs",
         "status": "healthy"
     }
 
+# Health check
 @app.get("/health")
 async def health_check():
-    return {"status": "OK"}
+    return {"status": " ✅ OK"}
 
 @app.post("/chat")
 async def chat(req: ChatRequest):
@@ -50,6 +61,7 @@ async def chat(req: ChatRequest):
         if not req.message.strip():
             raise HTTPException(status_code=400, detail="🚨 Message cannot be empty.")
 
+        # Use existing or generate new session_id
         session_id = req.session_id or str(uuid.uuid4())
 
         # Create a new chain for a new session
@@ -59,8 +71,13 @@ async def chat(req: ChatRequest):
 
         chain = chat_sessions[session_id]
 
+        # Send message to chatbot
         response = chain.invoke({"question": req.message})
         answer = response.get("answer", "Sorry, I couldn't find an answer.")
+
+        # log query and response
+        log_query(session_id=session_id, question=req.message, answer=answer)
+        
 
         return {
             "session_id": session_id,

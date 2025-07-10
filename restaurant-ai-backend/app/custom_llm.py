@@ -1,7 +1,7 @@
 from typing import Optional, List
 from huggingface_hub import InferenceClient
 from langchain_core.language_models import LLM
-from langchain_core.pydantic_v1 import PrivateAttr
+from pydantic.v1 import PrivateAttr
 from app.system_prompt import get_system_prompt
 
 
