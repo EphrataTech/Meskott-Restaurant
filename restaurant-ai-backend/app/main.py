@@ -12,10 +12,9 @@ app = FastAPI()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# CORS setup (customize for production)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Change to your frontend domain in prod
+    allow_origins=["*"],  # Change to frontend domain in prod
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -36,7 +35,7 @@ async def startup_event():
 @app.get("/")
 async def root():
     return {
-        "message": "Meskott Chatbot backend is running!",
+        "message": "🏃‍♀️ Meskott Chatbot backend is running!",
         "docs": "/docs",
         "status": "healthy"
     }
@@ -49,7 +48,7 @@ async def health_check():
 async def chat(req: ChatRequest):
     try:
         if not req.message.strip():
-            raise HTTPException(status_code=400, detail="Message cannot be empty.")
+            raise HTTPException(status_code=400, detail="🚨 Message cannot be empty.")
 
         session_id = req.session_id or str(uuid.uuid4())
 
@@ -71,5 +70,5 @@ async def chat(req: ChatRequest):
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"🚧 Chatbot error: {e}")
+        logger.error(f"❌ Chatbot error: {e}")
         raise HTTPException(status_code=500, detail="Internal Server Error")

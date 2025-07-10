@@ -12,7 +12,11 @@ def create_vector_db(documents):
         if os.path.exists(CHROMA_PATH):
             shutil.rmtree(CHROMA_PATH)
 
-        text_splitter = CharacterTextSplitter(chunk_size=800, chunk_overlap=100)
+        text_splitter = CharacterTextSplitter(
+            separator="\n\n",  # Ensures Q&A pairs remain intact
+            chunk_size=1000,
+            chunk_overlap=0
+        )
         chunks = text_splitter.split_documents(documents)
 
         embedding_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
