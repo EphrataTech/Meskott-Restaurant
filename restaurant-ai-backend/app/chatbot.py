@@ -17,12 +17,12 @@ logger = logging.getLogger(__name__)
 
 def build_chatbot_chain():
     try:
-        # Step 1: Load and embed restaurant documents
+        # Load and embed restaurant documents
         docs = load_documents()
         vectorstore = create_vector_db(docs)
         retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
-        # Step 2: Set up Hugging Face LLaMA 2 client
+        # Set up Hugging Face model client
         hf_token = os.getenv("HF_TOKEN")
         if not hf_token:
             raise EnvironmentError("Missing HF_TOKEN in environment variables.")
@@ -39,11 +39,11 @@ def build_chatbot_chain():
         llm = RunnableLambda(lambda input, **kwargs: custom_llm.invoke(input, **kwargs))
 
 
-        # Step 3: Prompt and memory
+        # Prompt and memory
         prompt = get_prompt()
         memory = get_memory()
 
-        # Step 4: Build the Conversational Retrieval Chain
+        # Build the Conversational Retrieval Chain
         chatbot_chain = ConversationalRetrievalChain.from_llm(
             llm=llm,
             retriever=retriever,
