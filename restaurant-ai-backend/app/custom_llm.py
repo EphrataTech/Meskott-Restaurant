@@ -31,7 +31,7 @@ class CustomHuggingFaceLLM(LLM):
         try:
             is_chat_model = any(
                 keyword in self.repo_id.lower()
-                for keyword in ["chat", "llama", "zephyr", "conversational"]
+                for keyword in ["chat", "llama", "zephyr", "conversational", "mistral"]
             )
 
             if is_chat_model:

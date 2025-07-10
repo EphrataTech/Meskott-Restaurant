@@ -20,7 +20,7 @@ def build_chatbot_chain():
         # Load and embed restaurant documents
         docs = load_documents()
         vectorstore = create_vector_db(docs)
-        retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
+        retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
 
         # Set up Hugging Face model client
         hf_token = os.getenv("HF_TOKEN")
@@ -29,7 +29,7 @@ def build_chatbot_chain():
 
         custom_llm = CustomHuggingFaceLLM(
             hf_token=hf_token,
-            repo_id="HuggingFaceH4/zephyr-7b-alpha",
+            repo_id="mistralai/Mistral-7B-Instruct-v0.2",
             temperature=0.7,
             max_new_tokens=512,
             repetition_penalty=1.1
