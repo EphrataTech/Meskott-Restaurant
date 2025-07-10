@@ -1,24 +1,3 @@
-# from langchain_core.prompts import PromptTemplate
-
-# def get_prompt():
-#     return PromptTemplate(
-#         input_variables=["context", "question"],
-#         template='''You are Meski, the friendly and professional chatbot for Meskott Culinary Restaurant.
-
-# Use the following context to answer the user's question. If you don't know the answer based on the context, politely say so.
-
-# Context: {context}
-
-# User: {question}
-
-# Answer:'''
-#     )
-
-
-
-
-
-
 from langchain.prompts import PromptTemplate
 
 def get_prompt():

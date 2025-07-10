@@ -1,16 +1,3 @@
-# from langchain.memory import ConversationBufferMemory
-
-# def get_memory():
-#     return ConversationBufferMemory(
-#         memory_key="chat_history", 
-#         return_messages=True,
-#         output_key="answer"  # Specify output key for ConversationalRetrievalChain
-#     )
-
-
-
-
-
 from langchain.memory import ConversationBufferMemory
 from langchain.schema import messages_from_dict, messages_to_dict
 

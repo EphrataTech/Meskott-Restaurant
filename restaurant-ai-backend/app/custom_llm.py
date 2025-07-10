@@ -1,5 +1,3 @@
-# app/custom_llm.py
-
 from typing import Optional, List
 from huggingface_hub import InferenceClient
 from langchain_core.language_models import LLM
