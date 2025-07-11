@@ -125,5 +125,21 @@ export default function ChatBot() {
             )}
           </div>
 
+            {messages.length === 1 && (
+            <div className="px-4 pb-2">
+              <p className="text-gray-400 text-xs mb-2">Quick questions:</p>
+              <div className="space-y-1">
+                {samplePrompts.map((prompt, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleSendMessage(prompt)}
+                    className="block w-full text-left text-xs bg-slate-700 text-white p-2 rounded hover:bg-slate-600 transition-colors"
+                  >
+                    {prompt}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
          
