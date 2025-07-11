@@ -87,4 +87,35 @@ export default function FeedbackForm() {
   const handleStarClick = (rating: number) => {
     setFormData({ ...formData, rating })
   }
+  const renderStars = () => {
+    return [1, 2, 3, 4, 5].map((star) => (
+      <button
+        key={star}
+        type="button"
+        onClick={() => handleStarClick(star)}
+        onMouseEnter={() => setHoveredStar(star)}
+        onMouseLeave={() => setHoveredStar(0)}
+        className="focus:outline-none transition-colors"
+      >
+        <Star
+          className={`w-8 h-8 ${
+            star <= (hoveredStar || formData.rating)
+              ? "text-amber-400 fill-amber-400"
+              : "text-gray-400 hover:text-amber-300"
+          }`}
+        />
+      </button>
+    ))
+  }
+
+  const getRatingText = (rating: number) => {
+    const ratingTexts = {
+      1: "Poor",
+      2: "Fair",
+      3: "Good",
+      4: "Very Good",
+      5: "Excellent",
+    }
+    return ratingTexts[rating as keyof typeof ratingTexts] || ""
+  }
 
