@@ -30,11 +30,11 @@ export default function Hero() {
 
     const handleNext = () => {
         setCurrentSlide((prev) => (prev + 1) % images.length);
-      };
+    };
     
-      const handlePrev = () => {
+    const handlePrev = () => {
         setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
-      };
+    };
 
     
         return (
@@ -64,18 +64,18 @@ export default function Hero() {
             {/*Manual Buttons */}
             <div className="absolute bottom-8 left-0 right-0 flex justify-between px-6 z-20">
         <button
-          onClick={handlePrev}
+        onClick={handlePrev}
           className="bg-[#C99A56] text-white px-4 py-2 rounded-md hover:bg-[#b88a45] transition-all"
         >
-          ‹ Prev
+        ‹ Prev
         </button>
         <button
-          onClick={handleNext}
+        onClick={handleNext}
           className="bg-[#C99A56] text-white px-4 py-2 rounded-md hover:bg-[#b88a45] transition-all"
         >
-          Next ›
+        Next ›
         </button>
-      </div>
+    </div>
             </section>
         );
         }
