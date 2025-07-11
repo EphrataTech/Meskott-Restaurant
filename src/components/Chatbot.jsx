@@ -142,4 +142,28 @@ export default function ChatBot() {
             </div>
           )}
 
-         
+               <div className="p-4 border-t border-slate-700">
+            <div className="flex space-x-2">
+              <input
+                type="text"
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="Type your message..."
+                className="flex-1 p-2 bg-slate-700 text-white rounded-lg text-sm focus:ring-2 focus:ring-amber-500 outline-none"
+              />
+              <button
+                onClick={() => handleSendMessage()}
+                disabled={!inputText.trim()}
+                className="bg-amber-500 hover:bg-amber-600 disabled:bg-gray-600 text-white p-2 rounded-lg transition-colors"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  )
+}
+    
