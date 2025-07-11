@@ -113,6 +113,33 @@ const generateCalendar = () => {
   </div>
 )}
 
+<div>
+  <h3 className="text-2xl font-semibold text-white mb-6">Your Reservations</h3>
+  {reservations.length === 0 ? (
+    <p className="text-gray-400">No reservations yet.</p>
+  ) : (
+    <div className="space-y-4 max-h-96 overflow-y-auto">
+      {reservations.map((reservation) => (
+        <div key={reservation.id} className="bg-slate-700 p-4 rounded-lg">
+          <div className="flex justify-between items-start mb-2">
+            <h4 className="text-white font-semibold">{reservation.name}</h4>
+            <span className="text-amber-400 text-sm">
+              {new Date(reservation.timestamp).toLocaleDateString()}
+            </span>
+          </div>
+          <p className="text-gray-300 text-sm">
+            {reservation.date} at {reservation.time} • {reservation.guests} guests
+          </p>
+          {reservation.message && (
+            <p className="text-gray-400 text-sm mt-2">{reservation.message}</p>
+          )}
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
+
 
 
 
