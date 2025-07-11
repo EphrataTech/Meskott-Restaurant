@@ -87,3 +87,43 @@ export default function ChatBot() {
         </button>
       ) : (
 
+
+                <div className="bg-slate-800 rounded-lg shadow-2xl w-80 h-96 flex flex-col">
+          <div className="bg-amber-500 text-white p-4 rounded-t-lg flex justify-between items-center">
+            <h3 className="font-semibold">Restaurant Assistant</h3>
+            <button onClick={() => setIsOpen(false)} className="hover:bg-amber-600 p-1 rounded">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="flex-1 p-4 overflow-y-auto space-y-4">
+            {messages.map((message) => (
+              <div key={message.id} className={`flex ${message.isBot ? "justify-start" : "justify-end"}`}>
+                <div
+                  className={`max-w-xs p-3 rounded-lg ${
+                    message.isBot ? "bg-slate-700 text-white" : "bg-amber-500 text-white"
+                  }`}
+                >
+                  <p className="text-sm">{message.text}</p>
+                  <p className="text-xs opacity-70 mt-1">
+                    {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                  </p>
+                </div>
+              </div>
+            ))}
+
+            {isTyping && (
+              <div className="flex justify-start">
+                <div className="bg-slate-700 text-white p-3 rounded-lg">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
+                    <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+
+         
