@@ -1,4 +1,4 @@
-"use client"
+
 
 import { useState } from "react"
 import { dishesData } from "../data/dishes"
