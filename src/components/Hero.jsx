@@ -13,10 +13,20 @@ export default function Hero() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-          setCurrentSlide((prev) => (prev + 1) % images.length);
+        setCurrentSlide((prev) => (prev + 1) % images.length);
         }, 4000);
         return () => clearInterval(interval);
-      }, []);
+    }, []);
+
+    useEffect(() => {
+        let i = 0;
+        const typing = setInterval(() => {
+        setTypedText(typeText.slice(0, i));
+        i++;
+        if (i > typeText.length) clearInterval(typing);
+        }, 80);
+        return () => clearInterval(typing);
+    }, []);
     return(
 
     )
