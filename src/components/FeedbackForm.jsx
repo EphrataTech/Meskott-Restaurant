@@ -50,3 +50,41 @@ export default function FeedbackForm() {
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
+
+    const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (validateForm()) {
+      const newFeedback: Feedback = {
+        id: Date.now().toString(),
+        ...formData,
+        timestamp: new Date().toISOString(),
+      }
+
+      const updatedFeedbacks = [...feedbacks, newFeedback]
+      setFeedbacks(updatedFeedbacks)
+      localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks))
+
+      setShowSuccess(true)
+      setFormData({
+        name: "",
+        email: "",
+        rating: 0,
+        message: "",
+      })
+      setMessageLength(0)
+
+      setTimeout(() => setShowSuccess(false), 5000)
+    }
+  }
+
+  const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value
+    setFormData({ ...formData, message: value })
+    setMessageLength(value.length)
+  }
+
+  const handleStarClick = (rating: number) => {
+    setFormData({ ...formData, rating })
+  }
+
