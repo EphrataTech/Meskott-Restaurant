@@ -8,6 +8,15 @@ const images = [
   ];
   const typeText = '🍽️ Welcome to Meskott Culinary Experience';
 export default function Hero() {
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [typedText, setTypedText] = useState('');
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+          setCurrentSlide((prev) => (prev + 1) % images.length);
+        }, 4000);
+        return () => clearInterval(interval);
+      }, []);
     return(
 
     )
