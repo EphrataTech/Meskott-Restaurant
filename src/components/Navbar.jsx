@@ -46,7 +46,7 @@ useEffect(() => {
     </div>
     <div className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute top-full left-0 mt-2 bg-white dark:bg-gray-800 text-black dark:text-white shadow-lg rounded-md p-2 min-w-[150px] z-50">
     <a href="#starters" className="block px-3 py-1 hover:text-black text-[#C99A56] font-roboto">Starters</a>
-    <a href="#main-course" className="block px-3 py-1 hover:text-black text-[#C99A56] font-roboto">Main Course</a>
+    <a href="#main-dishes" className="block px-3 py-1 hover:text-black text-[#C99A56] font-roboto">Main Dishes</a>
     <a href="#desserts" className="block px-3 py-1 hover:text-black text-[#C99A56] font-roboto">Desserts</a>
       <a href="#drinks" className="block px-3 py-1 hover:text-black text-[#C99A56] font-roboto">Drinks</a>
     </div>
