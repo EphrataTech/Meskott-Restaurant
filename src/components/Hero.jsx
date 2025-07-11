@@ -28,6 +28,14 @@ export default function Hero() {
         return () => clearInterval(typing);
     }, []);
 
+    const handleNext = () => {
+        setCurrentSlide((prev) => (prev + 1) % images.length);
+      };
+    
+      const handlePrev = () => {
+        setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
+      };
+
     
         return (
             <section className="relative w-full h-[100vh] overflow-hidden">
@@ -53,6 +61,21 @@ export default function Hero() {
             Book a Table
                 </a>
             </div>
+            {/*Manual Buttons */}
+            <div className="absolute bottom-8 left-0 right-0 flex justify-between px-6 z-20">
+        <button
+          onClick={handlePrev}
+          className="bg-[#C99A56] text-white px-4 py-2 rounded-md hover:bg-[#b88a45] transition-all"
+        >
+          ‹ Prev
+        </button>
+        <button
+          onClick={handleNext}
+          className="bg-[#C99A56] text-white px-4 py-2 rounded-md hover:bg-[#b88a45] transition-all"
+        >
+          Next ›
+        </button>
+      </div>
             </section>
         );
         }
