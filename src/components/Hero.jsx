@@ -48,15 +48,15 @@ export default function Hero() {
         
               {/* Overlay Content */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full bg-black bg-opacity-60 px-6 text-center">
-                <h1 className="text-[#C99A56] text-3xl md:text-5xl font-bold mb-4">
+                <h1 className="text-[#EBB361] text-3xl md:text-5xl font-bold mb-4 font-roboto">
                 {typedText}
                 </h1>
-                <p className="text-[#C99A56] text-base md:text-lg max-w-2xl mb-6">
+                <p className="text-[#EBB361] text-base md:text-lg max-w-2xl mb-6 font-roboto">
         Indulge in a culinary journey that celebrates freshness and culture. Discover the unique flavors that make our dishes unforgettable.
                 </p>
                 <a
         href="#reservation"
-                  className="text-[#C99A56] border border-[#C99A56] px-6 py-2 rounded-md hover:bg-[#C99A56] hover:text-white transition duration-300"
+                  className="text-black border border-[#C99A56] px-6 py-2 bg-[#C99A56] rounded-md hover:bg-[#C99A56] hover:text-white transition duration-300"
                 >
             Book a Table
                 </a>
