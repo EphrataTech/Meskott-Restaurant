@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import MenuPage from "./components/MenuPage"
 import SignatureDishes from "./components/SignatureDishes"
 import ReservationForm from "./components/ReservationForm"
+import FeedbackForm from "./components/FeedbackForm"
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
                 {/* <Hero /> */}
                 <SignatureDishes />
                 <ReservationForm />
+                <FeedbackForm />
                 {/* <ChatBot /> */}
               </main>
             }
