@@ -38,7 +38,7 @@ export default function Hero() {
                 className="w-full h-full object-cover absolute top-0 left-0 transition-all duration-1000"
             />
         
-              {/* Overlay Content */}
+              {/* Overlay Content of our hero section */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full bg-black bg-opacity-60 px-6 text-center">
                 <h1 className="text-[#C99A56] text-3xl md:text-5xl font-bold mb-4">
                 {typedText}
