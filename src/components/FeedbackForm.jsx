@@ -1,17 +1,10 @@
 
 
-import type React from "react"
+
 import { useState, useEffect } from "react"
 import { Star, Send } from "lucide-react"
 
-interface Feedback {
-  id: string
-  name: string
-  email: string
-  rating: number
-  message: string
-  timestamp: string
-}
+
 
 export default function FeedbackForm() {
   const [formData, setFormData] = useState({
@@ -20,9 +13,9 @@ export default function FeedbackForm() {
     rating: 0,
     message: "",
   })
-  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [errors, setErrors] = useState({})
   const [showSuccess, setShowSuccess] = useState(false)
-  const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
+  const [feedbacks, setFeedbacks] = useState([])
   const [messageLength, setMessageLength] = useState(0)
   const [hoveredStar, setHoveredStar] = useState(0)
 
@@ -33,13 +26,13 @@ export default function FeedbackForm() {
     }
   }, [])
 
-  const validateEmail = (email: string) => {
+  const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return regex.test(email)
   }
 
   const validateForm = () => {
-    const newErrors: Record<string, string> = {}
+    const newErrors = {}
 
     if (!formData.name.trim()) newErrors.name = "Name is required"
     if (!formData.email.trim()) newErrors.email = "Email is required"
@@ -51,11 +44,11 @@ export default function FeedbackForm() {
     return Object.keys(newErrors).length === 0
   }
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e) => {
     e.preventDefault()
 
     if (validateForm()) {
-      const newFeedback: Feedback = {
+      const newFeedback = {
         id: Date.now().toString(),
         ...formData,
         timestamp: new Date().toISOString(),
@@ -78,13 +71,13 @@ export default function FeedbackForm() {
     }
   }
 
-  const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleMessageChange = (e) => {
     const value = e.target.value
     setFormData({ ...formData, message: value })
     setMessageLength(value.length)
   }
 
-  const handleStarClick = (rating: number) => {
+  const handleStarClick = (rating) => {
     setFormData({ ...formData, rating })
   }
   const renderStars = () => {
@@ -108,7 +101,7 @@ export default function FeedbackForm() {
     ))
   }
 
-  const getRatingText = (rating: number) => {
+  const getRatingText = (rating) => {
     const ratingTexts = {
       1: "Poor",
       2: "Fair",
@@ -116,7 +109,7 @@ export default function FeedbackForm() {
       4: "Very Good",
       5: "Excellent",
     }
-    return ratingTexts[rating as keyof typeof ratingTexts] || ""
+    return ratingTexts[rating] || ""
   }
 
     return (
