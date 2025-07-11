@@ -119,3 +119,75 @@ export default function FeedbackForm() {
     return ratingTexts[rating as keyof typeof ratingTexts] || ""
   }
 
+    return (
+    <section id="feedback" className="py-20 bg-slate-900">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center text-amber-400 mb-12">Share Your Feedback</h2>
+
+        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-white mb-2">Name *</label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full p-3 bg-slate-700 text-white rounded-lg focus:ring-2 focus:ring-amber-500 outline-none"
+                    placeholder="Your full name"
+                  />
+                  {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
+                </div>
+
+                <div>
+                  <label className="block text-white mb-2">Email *</label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full p-3 bg-slate-700 text-white rounded-lg focus:ring-2 focus:ring-amber-500 outline-none"
+                    placeholder="your@email.com"
+                  />
+                  {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-white mb-2">Rating *</label>
+                <div className="flex items-center space-x-1 mb-2">{renderStars()}</div>
+                {formData.rating > 0 && <p className="text-amber-400 text-sm">{getRatingText(formData.rating)}</p>}
+                {errors.rating && <p className="text-red-400 text-sm mt-1">{errors.rating}</p>}
+              </div>
+
+              <div>
+                <label className="block text-white mb-2">Your Feedback *</label>
+                <textarea
+                  value={formData.message}
+                  onChange={handleMessageChange}
+                  className="w-full p-3 bg-slate-700 text-white rounded-lg focus:ring-2 focus:ring-amber-500 outline-none h-32 resize-none"
+                  placeholder="Tell us about your experience..."
+                  maxLength={500}
+                />
+                <div className="flex justify-between items-center mt-1">
+                  <span className="text-gray-400 text-sm">{messageLength}/500 characters</span>
+                  {errors.message && <p className="text-red-400 text-sm">{errors.message}</p>}
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-amber-500 hover:bg-amber-600 text-white py-3 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+              >
+                <Send className="w-5 h-5" />
+                <span>Submit Feedback</span>
+              </button>
+            </form>
+
+            {showSuccess && (
+              <div className="mt-6 p-4 bg-green-600 text-white rounded-lg">
+                Thank you for your feedback! We appreciate your input and will use it to improve our service.
+              </div>
+            )}
+          </div>
+
