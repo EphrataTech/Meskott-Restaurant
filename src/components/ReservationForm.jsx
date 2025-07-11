@@ -140,6 +140,28 @@ const generateCalendar = () => {
 </div>
 
 
+const [messageLength, setMessageLength] = useState(0)
+
+const handleMessageChange = (e) => {
+  const value = e.target.value
+  setFormData({ ...formData, message: value })
+  setMessageLength(value.length)
+}
+
+<div>
+  <label className="block text-white mb-2">Special Requests</label>
+  <textarea
+    value={formData.message}
+    onChange={handleMessageChange}
+    className="w-full p-3 bg-slate-700 text-white rounded-lg focus:ring-2 ..."
+    placeholder="Any special requests or dietary requirements..."
+    maxLength={200}
+  />
+  <div className="text-right text-gray-400 text-sm mt-1">
+    {messageLength}/200 characters
+  </div>
+</div>
+
 
 
 
