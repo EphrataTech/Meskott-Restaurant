@@ -51,4 +51,68 @@ const handleSubmit = (e) => {
   }
 }
 
+const [showCalendar, setShowCalendar] = useState(false)
+
+const generateCalendar = () => {
+  const today = new Date()
+  const currentMonth = today.getMonth()
+  const currentYear = today.getFullYear()
+  const firstDay = new Date(currentYear, currentMonth, 1).getDay()
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
+  const days = []
+  for (let i = 0; i < firstDay; i++) {
+    days.push(<div key={`empty-${i}`} className="p-2"></div>)
+  }
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = new Date(currentYear, currentMonth, day)
+    const dateString = date.toISOString().split("T")[0]
+    const isToday = day === today.getDate()
+    const isPast = date < today
+
+    days.push(
+      <button
+        key={day}
+        type="button"
+        onClick={() => {
+          if (!isPast) {
+            setFormData({ ...formData, date: dateString })
+            setShowCalendar(false)
+          }
+        }}
+        disabled={isPast}
+        className={`p-2 text-sm rounded hover:bg-slate-600 transition-colors ${
+          isToday
+            ? "bg-amber-500 text-white"
+            : isPast
+            ? "text-gray-500 cursor-not-allowed"
+            : "text-white hover:bg-slate-600"
+        } ${formData.date === dateString ? "bg-amber-600" : ""}`}
+      >
+        {day}
+      </button>
+    )
+  }
+  return days
+}
+
+{/* In the JSX form */}
+<button
+  type="button"
+  onClick={() => setShowCalendar(!showCalendar)}
+  className="w-full p-3 bg-slate-700 text-white rounded-lg ..."
+>
+  <span>{formData.date || "Select date"}</span>
+  <Calendar className="w-5 h-5" />
+</button>
+
+{showCalendar && (
+  <div className="absolute ...">
+    <div className="grid grid-cols-7 ...">
+      {/* weekday headers + {generateCalendar()} */}
+    </div>
+  </div>
+)}
+
+
+
 
