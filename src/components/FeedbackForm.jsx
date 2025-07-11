@@ -228,3 +228,28 @@ export default function FeedbackForm() {
               </div>
             )}
 
+
+            {feedbacks.length > 0 && (
+              <div className="mt-6 p-4 bg-slate-800 rounded-lg">
+                <h4 className="text-white font-semibold mb-2">Feedback Summary</h4>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p className="text-gray-400">Total Reviews:</p>
+                    <p className="text-white font-semibold">{feedbacks.length}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400">Average Rating:</p>
+                    <p className="text-amber-400 font-semibold">
+                      {(feedbacks.reduce((sum, f) => sum + f.rating, 0) / feedbacks.length).toFixed(1)}/5
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
