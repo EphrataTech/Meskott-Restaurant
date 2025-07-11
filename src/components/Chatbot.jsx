@@ -75,3 +75,15 @@ export default function ChatBot() {
       handleSendMessage()
     }
   }
+
+    return (
+    <section id="chatbot" className="fixed bottom-6 right-6 z-50">
+      {!isOpen ? (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="bg-amber-500 hover:bg-amber-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+        >
+          <MessageCircle className="w-6 h-6" />
+        </button>
+      ) : (
+
