@@ -190,4 +190,41 @@ export default function FeedbackForm() {
               </div>
             )}
           </div>
+          <div>
+            <h3 className="text-2xl font-semibold text-white mb-6">Recent Feedback</h3>
+            {feedbacks.length === 0 ? (
+              <div className="text-center py-8">
+                <p className="text-gray-400">No feedback yet. Be the first to share your experience!</p>
+              </div>
+            ) : (
+              <div className="space-y-4 max-h-96 overflow-y-auto chat-scroll">
+                {feedbacks
+                  .slice()
+                  .reverse()
+                  .map((feedback) => (
+                    <div key={feedback.id} className="bg-slate-700 p-4 rounded-lg">
+                      <div className="flex justify-between items-start mb-2">
+                        <h4 className="text-white font-semibold">{feedback.name}</h4>
+                        <span className="text-amber-400 text-sm">
+                          {new Date(feedback.timestamp).toLocaleDateString()}
+                        </span>
+                      </div>
+                      <div className="flex items-center mb-2">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star
+                            key={star}
+                            className={`w-4 h-4 ${
+                              star <= feedback.rating ? "text-amber-400 fill-amber-400" : "text-gray-400"
+                            }`}
+                          />
+                        ))}
+                        <span className="text-gray-300 text-sm ml-2">
+                          ({feedback.rating}/5 - {getRatingText(feedback.rating)})
+                        </span>
+                      </div>
+                      <p className="text-gray-300 text-sm">{feedback.message}</p>
+                    </div>
+                  ))}
+              </div>
+            )}
 
