@@ -4,6 +4,7 @@ import MenuPage from "./components/MenuPage"
 import SignatureDishes from "./components/SignatureDishes"
 import ReservationForm from "./components/ReservationForm"
 import FeedbackForm from "./components/FeedbackForm"
+import Chatbot from "./components/Chatbot"
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
                 <SignatureDishes />
                 <ReservationForm />
                 <FeedbackForm />
+                <Chatbot />
                 {/* <ChatBot /> */}
               </main>
             }
