@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  //const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
 
 // Load theme from localStorage on mount
 useEffect(() => {
@@ -13,7 +15,7 @@ useEffect(() => {
     }
   }, []);
 
-// Watch for dark mode changes
+//  for dark mode changes
   useEffect(() => {
     if (isDarkMode) {
       localStorage.setItem('theme', 'dark');
@@ -28,18 +30,48 @@ useEffect(() => {
   return(
     <header className='sticky top-0 z-50 bg-[#0B1517] dark:bg-gray-900 shadow-md'>
         <nav className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <ul className='flex items-center space-x-4 gap-6 text-white relative'>
-                <li><a href="#home" className='hover:text-pink-400'>Home</a></li>
-                <li><a href="#feedback" className='hover:text-pink-400'>About</a>Feedback</li>
-                <li className='relative' 
-                onMouseEnter={setIsMenuOpen(true)}
-                onMouseLeave={setIsMenuOpen(false)}
-                >
-                    <div className='flex items-center gap-1 cursor-pointer hover:text-pink-400'>
-                        <span className='text-lg'>Menu</span>
-                    </div>
-                </li>
-            </ul>
+        <button
+    className="md:hidden text-white text-3xl"
+    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+  >
+    ☰
+  </button>
+        <ul className={`flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto bg-[#0B1517] md:bg-transparent z-40 md:flex items-start md:items-center text-white transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'flex' : 'hidden'} md:gap-6 gap-4 px-4 py-4 md:py-0`}>
+  <li><a href="#home" className='hover:text-pink-400'>Home</a></li>
+  <li><a href="#feedback" className='hover:text-pink-400'>Feedback</a></li>
+  <li className="relative group">
+    <div className="flex items-center gap-1 cursor-pointer hover:text-pink-400">
+      <span>Menu</span>
+      <span className="text-xs">▼</span>
+    </div>
+    <div className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute top-full left-0 mt-2 bg-white dark:bg-gray-800 text-black dark:text-white shadow-lg rounded-md p-2 min-w-[150px] z-50">
+    <a href="#starters" className="block px-3 py-1 hover:text-pink-500">Starters</a>
+    <a href="#main-course" className="block px-3 py-1 hover:text-pink-500">Main Course</a>
+    <a href="#desserts" className="block px-3 py-1 hover:text-pink-500">Desserts</a>
+      <a href="#drinks" className="block px-3 py-1 hover:text-pink-500">Drinks</a>
+    </div>
+  </li>
+</ul>
+
+            <div className='flex-shrink-0'>
+                <img src="/public/images/Actions.png" alt="Meskot-Logo" className='h-10 object-contain' />
+
+            </div>
+            <div className="flex items-center gap-4">
+          <button
+            onClick={() => setIsDarkMode(!isDarkMode)}
+            className="bg-gray-700 text-white px-3 py-1 rounded-md hover:bg-gray-600 text-sm"
+          >
+            {isDarkMode ? '☀️ Light' : '🌙 Dark'}
+          </button>
+
+          <a
+            href="#menu-button"
+            className="bg-[#C99A56] text-white px-4 py-2 rounded-full hover:bg-[#b98a46] text-sm shadow-md"
+          >
+            Menu
+          </a>
+        </div>
         </nav>
     </header>
 )
