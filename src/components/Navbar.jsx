@@ -31,6 +31,14 @@ useEffect(() => {
             <ul className='flex items-center space-x-4 gap-6 text-white relative'>
                 <li><a href="#home" className='hover:text-pink-400'>Home</a></li>
                 <li><a href="#feedback" className='hover:text-pink-400'>About</a>Feedback</li>
+                <li className='relative' 
+                onMouseEnter={setIsMenuOpen(true)}
+                onMouseLeave={setIsMenuOpen(false)}
+                >
+                    <div className='flex items-center gap-1 cursor-pointer hover:text-pink-400'>
+                        <span className='text-lg'>Menu</span>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
