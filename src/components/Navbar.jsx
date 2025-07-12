@@ -59,6 +59,7 @@ useEffect(() => {
 
             </div>
             <div className="flex items-center gap-4">
+                {/* Dark Mode Toggle Button which will change the theme to Light/Dark*/}
           <button
             onClick={() => setIsDarkMode(!isDarkMode)}
             className="bg-gray-700 text-white px-3 py-1 rounded-md hover:bg-gray-600 text-sm"
