@@ -40,7 +40,7 @@ export default function ChatBot() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          question: messageText,
+          message: messageText,
           session_id: "frontend_session_" + Date.now(),
         }),
       })

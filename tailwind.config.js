@@ -4,8 +4,16 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+<<<<<<< HEAD
+=======
+  darkMode: 'class',
+>>>>>>> upstream/main
   theme: {
     extend: {},
   },
   plugins: [],
+<<<<<<< HEAD
 };
+=======
+}
+>>>>>>> upstream/main
