@@ -16,6 +16,7 @@ useEffect(() => {
   }, []);
 
 //  for dark mode changes
+// It will add dark mode changes
   useEffect(() => {
     if (isDarkMode) {
       localStorage.setItem('theme', 'dark');
