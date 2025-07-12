@@ -3,9 +3,10 @@ import os
 import json
 from datetime import datetime
 
-# Paths
-CHAT_LOGS_DIR = "../chat_logs"
-FLAGGED_LOGS_FILE = "flagged_feedback.json"
+# Paths (robust absolute-based)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CHAT_LOGS_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "chat_logs"))
+FLAGGED_LOGS_FILE = os.path.join(BASE_DIR, "flagged_feedback.json")
 
 # Page config
 st.set_page_config(page_title="Meskott Admin Tool", layout="wide")
@@ -57,9 +58,8 @@ if selected_session:
                     "status": "flagged"
                 }
 
-                if not os.path.exists(FLAGGED_LOGS_FILE):
-                    flagged_data = []
-                else:
+                flagged_data = []
+                if os.path.exists(FLAGGED_LOGS_FILE):
                     with open(FLAGGED_LOGS_FILE, "r", encoding="utf-8") as log_f:
                         try:
                             flagged_data = json.load(log_f)
@@ -86,9 +86,8 @@ if selected_session:
                         "status": "fixed"
                     }
 
-                    if not os.path.exists(FLAGGED_LOGS_FILE):
-                        flagged_data = []
-                    else:
+                    flagged_data = []
+                    if os.path.exists(FLAGGED_LOGS_FILE):
                         with open(FLAGGED_LOGS_FILE, "r", encoding="utf-8") as log_f:
                             try:
                                 flagged_data = json.load(log_f)

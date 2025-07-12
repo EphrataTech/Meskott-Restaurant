@@ -1,7 +1,7 @@
 # Streamlit Dockerfile
 FROM python:3.10-slim
 
-WORKDIR /app
+WORKDIR /app/admin_tool
 
 COPY . .
 
