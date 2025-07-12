@@ -4,7 +4,7 @@ import { useState } from "react"
 import { dishesData } from "../data/dishes"
 
 export default function SignatureDishes() {
-  const [visibleDishes, setVisibleDishes] = useState(3)
+  const [visibleDishes, setVisibleDishes] = useState(6)
   const [filter, setFilter] = useState("all")
   const [hoveredDish, setHoveredDish] = useState(null)
 
@@ -15,7 +15,7 @@ export default function SignatureDishes() {
   })
 
   const loadMore = () => {
-    setVisibleDishes((prev) => Math.min(prev + 3, filteredDishes.length))
+    setVisibleDishes((prev) => Math.min(prev + 4, filteredDishes.length))
   }
 
   return (
@@ -58,19 +58,28 @@ export default function SignatureDishes() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredDishes.slice(0, visibleDishes).map((dish, index) => (
             <div
               key={dish.id}
               className="relative bg-slate-700 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300"
               onMouseEnter={() => setHoveredDish(dish.id)}
               onMouseLeave={() => setHoveredDish(null)}
-            >
-              <img
-  src={dish.image}
-  alt={dish.name}
-  className="w-full h-48 object-cover"
-/>
+          
+          
+          >
+    
+<div className="relative h-64 overflow-hidden">
+  
+  
+  <img
+    src={dish.image || ""}
+    alt={dish.name}
+    className="w-full h-72 object-cover transition-transform duration-300 hover:scale-110"
+  />
+
+</div>
+
 
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-white mb-2">{dish.name}</h3>
