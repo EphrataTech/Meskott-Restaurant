@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css'
 import Navbar from '../src/components/Navbar'
+import Hero from '../src/components/Hero'
 
 export default function App() {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -26,8 +27,11 @@ export default function App() {
     }
   }, [isDarkMode]);
     return(
+
         <div className="bg-white dark:bg-[#0B1517] text-black dark:text-white transition-all duration-500 min-h-screen">
       <Navbar isDarkMode={isDarkMode} toggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
+      <Hero/>
     </div>
+      
     )
 }
