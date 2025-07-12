@@ -11,6 +11,7 @@ export default function Hero() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [typedText, setTypedText] = useState('');
    {/*Used hooks like USe Effect To slide the image every 4 seconds
+    helps to slide every 4 seconds 
     4000 mil = 4 sec */ }
     useEffect(() => {
         const interval = setInterval(() => {
