@@ -5,7 +5,7 @@ export default function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-
+// Load the theme from Local storage Using use state effect
 // Load theme from localStorage on mount
 useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
