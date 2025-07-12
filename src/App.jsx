@@ -5,11 +5,12 @@ import SignatureDishes from "./components/SignatureDishes"
 import ReservationForm from "./components/ReservationForm"
 import FeedbackForm from "./components/FeedbackForm"
 import Chatbot from "./components/Chatbot"
+import Header from "./components/Header"
 
 export default function App() {
   return (
     <Router>
-     
+      <Header/>
         <Routes>
           <Route
             path="/"
