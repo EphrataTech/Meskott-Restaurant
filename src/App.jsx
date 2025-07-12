@@ -8,6 +8,7 @@ export default function App() {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
   // On load: apply theme from localStorage
+  //Applied useEffcet to check for dark mode in localStorage
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme === 'dark') {
