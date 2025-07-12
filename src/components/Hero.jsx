@@ -27,7 +27,7 @@ export default function Hero() {
         }, 80);
         return () => clearInterval(typing);
     }, []);
-
+{/*Function to handle next and previous buttons */ }
     const handleNext = () => {
         setCurrentSlide((prev) => (prev + 1) % images.length);
     };
