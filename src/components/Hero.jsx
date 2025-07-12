@@ -13,7 +13,7 @@ export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [typedText, setTypedText] = useState('');
 
-  // Used hooks like useEffect to slide the image every 4 seconds
+  // Auto-slide every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % images.length);
@@ -21,6 +21,7 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
+  // Typing animation for heading text
   useEffect(() => {
     let i = 0;
     const typing = setInterval(() => {
@@ -31,6 +32,7 @@ export default function Hero() {
     return () => clearInterval(typing);
   }, []);
 
+  // Manual navigation
   const handleNext = () => {
     setCurrentSlide((prev) => (prev + 1) % images.length);
   };
@@ -48,7 +50,7 @@ export default function Hero() {
         className="w-full h-full object-cover absolute top-0 left-0 transition-all duration-1000"
       />
 
-      {/* Overlay Content — Passing the declared typeText variable here */}
+      {/* Overlay Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full bg-black bg-opacity-60 px-6 text-center">
         <h1 className="text-[#EBB361] text-3xl md:text-5xl font-bold mb-4 font-roboto">
           {typedText}
