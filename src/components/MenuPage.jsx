@@ -38,7 +38,7 @@ export default function MenuPage() {
               key={dish.id}
               className="bg-slate-700 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300"
             >
-              <img src={dish.image || "/placeholder.svg"} alt={dish.name} className="w-full h-48 object-cover" />
+              <img src={dish.image || ""} alt={dish.name} className="w-full h-48 object-cover" />
               <div className="p-6">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-xl font-semibold text-white">{dish.name}</h3>
