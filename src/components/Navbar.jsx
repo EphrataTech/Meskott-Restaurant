@@ -16,6 +16,7 @@ useEffect(() => {
   }, []);
 
 //  for dark mode changes
+// It will add dark mode changes
   useEffect(() => {
     if (isDarkMode) {
       localStorage.setItem('theme', 'dark');
@@ -37,6 +38,7 @@ useEffect(() => {
     ☰
   </button>
         <ul className={`flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto bg-[#0B1517] md:bg-transparent z-40 md:flex items-start md:items-center text-white transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'flex' : 'hidden'} md:gap-6 gap-4 px-4 py-4 md:py-0`}>
+
   <li><a href="#home" className='hover:text-white text-[#C99A56]'>Home</a></li>
   <li><a href="#feedback" className='hover:text-white text-[#C99A56]'>Feedback</a></li>
   <li
@@ -63,6 +65,7 @@ useEffect(() => {
       <a href="#drinks" className="block px-3 py-1 hover:text-black text-[#C99A56]">
         Drinks
       </a>
+
     </div>
   )}
 </li>
@@ -82,7 +85,7 @@ useEffect(() => {
 
           <a
             href="#menu-button"
-            className="bg-[#C99A56] text-white px-4 py-2 rounded-full hover:bg-[#b98a46] text-sm shadow-md"
+            className="bg-[#C99A56] text-black px-4 py-2 rounded-full hover:bg-[#b98a46] text-sm shadow-md"
           >
             Menu
           </a>
