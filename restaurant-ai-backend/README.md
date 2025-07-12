@@ -140,6 +140,9 @@ You can deploy this project on **Render** (or any cloud provider). The backend a
 
 Want to auto-deploy? Ask us for a `render.yaml` file!
 
+Here's the render link for FastAPI: [https://meskott-backend.onrender.com/](https://meskott-backend.onrender.com/)
+Here's the render link for Streamlit(Admin): [https://meskott-admin.onrender.com/](https://meskott-admin.onrender.com/)
+
 ---
 
 ## ⚙️ Tech Stack
@@ -147,7 +150,7 @@ Want to auto-deploy? Ask us for a `render.yaml` file!
 - FastAPI
 - Streamlit
 - LangChain
-- Hugging Face Inference API (LLaMA 2)
+- Hugging Face Inference API (Mistral)
 - ChromaDB
 - Docker (optional)
 
