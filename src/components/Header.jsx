@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Navbar({ isDarkMode, toggleDarkMode }) {
+export default function Headerr({ isDarkMode, toggleDarkMode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -18,7 +18,7 @@ export default function Navbar({ isDarkMode, toggleDarkMode }) {
           <li><a href="#home" className='hover:text-white text-[#C99A56] font-roboto'>Home</a></li>
           <li><a href="#feedback" className='hover:text-white text-[#C99A56] font-roboto'>Feedback</a></li>
 
-          {/* Dropdown  Menu*/}
+          {/* Menu Dropdown with React State */}
           <li
             className="relative"
             onMouseEnter={() => setIsMenuOpen(true)}
@@ -45,7 +45,6 @@ export default function Navbar({ isDarkMode, toggleDarkMode }) {
         </div>
 
         <div className="flex items-center gap-4">
-          {/* Toggle Theme Button */}
           <button
             onClick={toggleDarkMode}
             className="bg-gray-700 text-white px-3 py-1 rounded-md hover:bg-gray-600 text-sm"
