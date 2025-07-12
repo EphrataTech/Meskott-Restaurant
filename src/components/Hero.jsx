@@ -50,7 +50,7 @@ export default function Hero() {
         className="w-full h-full object-cover absolute top-0 left-0 transition-all duration-1000"
       />
 
-      {/* Overlay Content */}
+      {/* Overlay Content — Passing the declared Type text variable here */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full bg-black bg-opacity-60 px-6 text-center">
         <h1 className="text-[#EBB361] text-3xl md:text-5xl font-bold mb-4 font-roboto">
           {typedText}
@@ -66,7 +66,7 @@ export default function Hero() {
         </a>
       </div>
 
-      {/* Manual Buttons */}
+      {/* Manual Buttons — Added this to allow manual slide control */}
       <div className="absolute bottom-8 left-0 right-0 flex justify-between px-6 z-20">
         <button
           onClick={handlePrev}
