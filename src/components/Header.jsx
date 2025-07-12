@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Headerr({ isDarkMode, toggleDarkMode }) {
+export default function Header({ isDarkMode, toggleDarkMode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
