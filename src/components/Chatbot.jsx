@@ -20,18 +20,7 @@ export default function ChatBot() {
     "What are your opening hours?",
   ]
 
-    const botResponses = {
-    "what's the most popular dish":
-      "Our most popular dish is the Grilled Chicken Breast Provencale! ...",
-    "do you have vegetarian options":
-      "We have many vegetarian dishes including our Avocado Green Salad ...",
-    "what are your opening hours":
-      "We're open Monday to Sunday from 5:00 PM to 11:00 PM. ...",
-    default:
-      "Thank you for your question! ...",
-  }
-
-  const handleSendMessage = (text) => {
+  const handleSendMessage = async (text) => {
     const messageText = text || inputText.trim()
     if (!messageText) return
 
@@ -46,27 +35,38 @@ export default function ChatBot() {
     setInputText("")
     setIsTyping(true)
 
-    setTimeout(() => {
-      const lowerText = messageText.toLowerCase()
-      let response = botResponses.default
+    try {
+      const res = await fetch("https://meskott-backend.onrender.com/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: messageText,
+          session_id: "frontend_session_" + Date.now(),
+        }),
+      })
 
-      for (const [key, value] of Object.entries(botResponses)) {
-        if (key !== "default" && lowerText.includes(key)) {
-          response = value
-          break
-        }
-      }
+      const data = await res.json()
 
       const botMessage = {
         id: (Date.now() + 1).toString(),
-        text: response,
+        text: data.response || "🤖 No response received.",
         isBot: true,
         timestamp: new Date(),
       }
 
       setMessages((prev) => [...prev, botMessage])
+    } catch (error) {
+      console.error("API error:", error)
+      const errorMessage = {
+        id: (Date.now() + 1).toString(),
+        text: "❌ Oops! Could not connect to the server.",
+        isBot: true,
+        timestamp: new Date(),
+      }
+      setMessages((prev) => [...prev, errorMessage])
+    } finally {
       setIsTyping(false)
-    }, 1500)
+    }
   }
 
   const handleKeyPress = (e) => {
@@ -76,7 +76,7 @@ export default function ChatBot() {
     }
   }
 
-    return (
+  return (
     <section id="chatbot" className="fixed bottom-6 right-6 z-50">
       {!isOpen ? (
         <button
@@ -86,9 +86,7 @@ export default function ChatBot() {
           <MessageCircle className="w-6 h-6" />
         </button>
       ) : (
-
-
-                <div className="bg-slate-800 rounded-lg shadow-2xl w-80 h-96 flex flex-col">
+        <div className="bg-slate-800 rounded-lg shadow-2xl w-80 h-96 flex flex-col">
           <div className="bg-amber-500 text-white p-4 rounded-t-lg flex justify-between items-center">
             <h3 className="font-semibold">Restaurant Assistant</h3>
             <button onClick={() => setIsOpen(false)} className="hover:bg-amber-600 p-1 rounded">
@@ -117,15 +115,21 @@ export default function ChatBot() {
                 <div className="bg-slate-700 text-white p-3 rounded-lg">
                   <div className="flex space-x-1">
                     <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
-                    <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                    <div
+                      className="w-2 h-2 bg-white rounded-full animate-bounce"
+                      style={{ animationDelay: "0.1s" }}
+                    ></div>
+                    <div
+                      className="w-2 h-2 bg-white rounded-full animate-bounce"
+                      style={{ animationDelay: "0.2s" }}
+                    ></div>
                   </div>
                 </div>
               </div>
             )}
           </div>
 
-            {messages.length === 1 && (
+          {messages.length === 1 && (
             <div className="px-4 pb-2">
               <p className="text-gray-400 text-xs mb-2">Quick questions:</p>
               <div className="space-y-1">
@@ -142,7 +146,7 @@ export default function ChatBot() {
             </div>
           )}
 
-               <div className="p-4 border-t border-slate-700">
+          <div className="p-4 border-t border-slate-700">
             <div className="flex space-x-2">
               <input
                 type="text"
@@ -166,4 +170,3 @@ export default function ChatBot() {
     </section>
   )
 }
-    
