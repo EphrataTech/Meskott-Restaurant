@@ -62,7 +62,8 @@ export default function Hero() {
             Book a Table
                 </a>
             </div>
-            {/*Manual Buttons */}
+            {/*Manual Buttons 
+            Added this buttons to make the prev and next clickable to right and left*/}
             <div className="absolute bottom-8 left-0 right-0 flex justify-between px-6 z-20">
         <button
         onClick={handlePrev}
