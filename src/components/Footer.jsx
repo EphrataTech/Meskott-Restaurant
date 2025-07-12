@@ -18,7 +18,7 @@ export default function Footer() {
     return (
         <footer className="bg-[#0B1517] text-white py-10 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 text-sm text-gray-300">
-            {/* Logo & meskot  Map section */}
+            {/* Logo & meskot Map section */}
             <div className="space-y-4 text-center md:text-left">
             <img src="/images/Actions.png" alt="Meskott Logo" className="h-10 mx-auto md:mx-0" />
             <div className="bg-gray-500 h-32 w-full md:w-40 mx-auto md:mx-0 rounded-md flex items-center justify-center">
@@ -39,7 +39,9 @@ export default function Footer() {
             <a href="#feedback" className="hover:text-white block">Feedback Form</a>
             </div>
     
-            {/* Connect With Us Section*/}
+            {/* Connect With Us Section
+            {/* TODO: Add links to social media icons later */}
+
             <div className="space-y-2 text-center md:text-left text-[#C99A56]">
             <h4 className="font-semibold text-[#C99A56]">Connect With Us</h4>
             <a href="#" className="hover:text-[#C99A56] block">Facebook Page</a>
@@ -81,6 +83,6 @@ export default function Footer() {
   </div>
 </div>
 
-        </footer>
+    </footer>
     );
     }
