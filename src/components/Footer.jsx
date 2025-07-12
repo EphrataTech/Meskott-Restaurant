@@ -7,7 +7,8 @@ export default function Footer() {
         const currentHour = now.getHours();
         const currentDay = now.getDay(); // 0 = Sunday
     
-        // Open Mon–Sat: 8am–12pm, 1pm–8pm (as shown in figma)
+        // Open Mon–Sat: 8am–12pm, 1pm–8pm 
+        //Automatically updates the time when it's opened and closed
         const isWeekday = currentDay >= 1 && currentDay <= 6;
         const isOpenTime =
           (currentHour >= 8 && currentHour < 12) ||
