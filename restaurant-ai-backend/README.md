@@ -8,13 +8,9 @@ An AI-powered chatbot for the fictional Meskott Restaurant. The system answers c
 ## ✨ Features
 
 - 🤖 FastAPI-based AI chatbot API
-- 🧠 RAG pipeline using LangChain, LLaMA 2 (via Hugging Face Inference API), and ChromaDB
+- 🧠 RAG pipeline using LangChain, Mistral (via Hugging Face Inference API), and ChromaDB
 - 🗃️ Vector-based document search from restaurant knowledge base
 - 🧾 Session logging for all chat interactions
-- 🧑‍💼 Streamlit Admin Panel to:
-  - View chat sessions
-  - Flag incorrect responses
-  - Suggest better answers
 
 ---
 
