@@ -34,7 +34,7 @@ export default function App() {
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
   return (
     <Router>
-      <Header/>
+      <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode}/>
         <Routes>
           <Route
             path="/"
