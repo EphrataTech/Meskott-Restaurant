@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: meskott-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ./chat_logs:/app/chat_logs
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  admin:
+    build:
+      context: ./admin_tool
+      dockerfile: Dockerfile
+    container_name: meskott-admin
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./chat_logs:/app/chat_logs
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0
