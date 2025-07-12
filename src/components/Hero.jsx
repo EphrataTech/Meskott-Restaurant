@@ -10,7 +10,7 @@ const images = [
 export default function Hero() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [typedText, setTypedText] = useState('');
-
+   {/*Used hooks flike USe Effect To slide the image every 4 seconds */ }
     useEffect(() => {
         const interval = setInterval(() => {
         setCurrentSlide((prev) => (prev + 1) % images.length);
@@ -28,6 +28,14 @@ export default function Hero() {
         return () => clearInterval(typing);
     }, []);
 
+    const handleNext = () => {
+        setCurrentSlide((prev) => (prev + 1) % images.length);
+    };
+    
+    const handlePrev = () => {
+        setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
+    };
+
     
         return (
             <section className="relative w-full h-[100vh] overflow-hidden">
@@ -40,19 +48,34 @@ export default function Hero() {
         
               {/* Overlay Content of our hero section */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full bg-black bg-opacity-60 px-6 text-center">
-                <h1 className="text-[#C99A56] text-3xl md:text-5xl font-bold mb-4">
+                <h1 className="text-[#EBB361] text-3xl md:text-5xl font-bold mb-4 font-roboto">
                 {typedText}
                 </h1>
-                <p className="text-[#C99A56] text-base md:text-lg max-w-2xl mb-6">
+                <p className="text-[#EBB361] text-base md:text-lg max-w-2xl mb-6 font-roboto">
         Indulge in a culinary journey that celebrates freshness and culture. Discover the unique flavors that make our dishes unforgettable.
                 </p>
                 <a
         href="#reservation"
-                  className="text-[#C99A56] border border-[#C99A56] px-6 py-2 rounded-md hover:bg-[#C99A56] hover:text-white transition duration-300"
+                  className="text-black border border-[#C99A56] px-6 py-2 bg-[#C99A56] rounded-md hover:bg-[#C99A56] hover:text-white transition duration-300"
                 >
             Book a Table
                 </a>
             </div>
+            {/*Manual Buttons */}
+            <div className="absolute bottom-8 left-0 right-0 flex justify-between px-6 z-20">
+        <button
+        onClick={handlePrev}
+          className="bg-[#C99A56] text-white px-4 py-2 rounded-md hover:bg-[#b88a45] transition-all"
+        >
+        ‹ Prev
+        </button>
+        <button
+        onClick={handleNext}
+          className="bg-[#C99A56] text-white px-4 py-2 rounded-md hover:bg-[#b88a45] transition-all"
+        >
+        Next ›
+        </button>
+    </div>
             </section>
         );
         }
