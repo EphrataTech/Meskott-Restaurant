@@ -7,6 +7,8 @@ import ReservationForm from "./components/ReservationForm"
 import FeedbackForm from "./components/FeedbackForm"
 import Chatbot from "./components/Chatbot"
 import Header from "./components/Header"
+import Hero from "./components/Hero"
+import Footer from "./components/Footer"
 
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -40,6 +42,7 @@ export default function App() {
             path="/"
             element={
               <main>
+                <Hero/>
             
                 <SignatureDishes />
                 <ReservationForm />
@@ -50,7 +53,7 @@ export default function App() {
           />
           <Route path="/menu/:category" element={<MenuPage />} />
         </Routes>
-       
+       <Footer/>
     </Router>
   )
 }
