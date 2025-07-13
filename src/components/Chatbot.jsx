@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { MessageCircle, Send, X } from "lucide-react";
+import { useState } from "react"
+import { MessageCircle, Send, X } from "lucide-react"
 
 export default function ChatBot() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState([
     {
       id: "1",
@@ -10,30 +10,30 @@ export default function ChatBot() {
       isBot: true,
       timestamp: new Date(),
     },
-  ]);
-  const [inputText, setInputText] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  ])
+  const [inputText, setInputText] = useState("")
+  const [isTyping, setIsTyping] = useState(false)
 
   const samplePrompts = [
     "What's the most popular dish?",
     "Do you have vegetarian options?",
     "What are your opening hours?",
-  ];
+  ]
 
   const handleSendMessage = async (text) => {
-    const messageText = text || inputText.trim();
-    if (!messageText) return;
+    const messageText = text || inputText.trim()
+    if (!messageText) return
 
     const userMessage = {
       id: Date.now().toString(),
       text: messageText,
       isBot: false,
       timestamp: new Date(),
-    };
+    }
 
-    setMessages((prev) => [...prev, userMessage]);
-    setInputText("");
-    setIsTyping(true);
+    setMessages((prev) => [...prev, userMessage])
+    setInputText("")
+    setIsTyping(true)
 
     try {
       const res = await fetch("https://meskott-backend.onrender.com/chat", {
@@ -43,38 +43,38 @@ export default function ChatBot() {
           message: messageText,
           session_id: "frontend_session_" + Date.now(),
         }),
-      });
+      })
 
-      const data = await res.json();
+      const data = await res.json()
 
       const botMessage = {
         id: (Date.now() + 1).toString(),
         text: data.response || "🤖 No response received.",
         isBot: true,
         timestamp: new Date(),
-      };
+      }
 
-      setMessages((prev) => [...prev, botMessage]);
+      setMessages((prev) => [...prev, botMessage])
     } catch (error) {
-      console.error("API error:", error);
+      console.error("API error:", error)
       const errorMessage = {
         id: (Date.now() + 1).toString(),
         text: "❌ Oops! Could not connect to the server.",
         isBot: true,
         timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, errorMessage]);
+      }
+      setMessages((prev) => [...prev, errorMessage])
     } finally {
-      setIsTyping(false);
+      setIsTyping(false)
     }
-  };
+  }
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
+      e.preventDefault()
+      handleSendMessage()
     }
-  };
+  }
 
   return (
     <section id="chatbot" className="fixed bottom-6 right-6 z-50">
@@ -96,23 +96,15 @@ export default function ChatBot() {
 
           <div className="flex-1 p-4 overflow-y-auto space-y-4">
             {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${message.isBot ? "justify-start" : "justify-end"}`}
-              >
+              <div key={message.id} className={`flex ${message.isBot ? "justify-start" : "justify-end"}`}>
                 <div
                   className={`max-w-xs p-3 rounded-lg ${
-                    message.isBot
-                      ? "bg-slate-700 text-white"
-                      : "bg-amber-500 text-white"
+                    message.isBot ? "bg-slate-700 text-white" : "bg-amber-500 text-white"
                   }`}
                 >
                   <p className="text-sm">{message.text}</p>
                   <p className="text-xs opacity-70 mt-1">
-                    {message.timestamp.toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
+                    {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                   </p>
                 </div>
               </div>
@@ -176,5 +168,5 @@ export default function ChatBot() {
         </div>
       )}
     </section>
-  );
+  )
 }
